@@ -1,0 +1,36 @@
+OTIMIZACAO ANTI-TRAVADAS - Pokemon Battle Advanced 0.3.3
+=========================================================
+
+PROBLEMA
+Ao andar pelo mapa o jogo da pequenos engasgos (travadas de 25-50 ms), mesmo
+em PCs fortes. A causa e o driver de video padrao do jogo (Direct3D 12).
+
+O QUE FAZ
+Troca o driver de video para Vulkan, que o proprio jogo ja suporta.
+Resultado medido (RTX 4090, andando de Pallet Town ate a Route 2 e voltando):
+  - travadas andando (>25 ms): 139-176  ->  26-30   (cerca de 80% menos)
+  - travadas parado (20 s):    48-59    ->  5-12
+  - grafico identico (comparei capturas de tela dos dois drivers)
+Em PCs mais fracos o ganho pode ser diferente.
+
+COMO INSTALAR
+1. Extraia este .zip em qualquer pasta.
+2. De dois cliques em INSTALAR.bat.
+   (Ele acha a pasta do jogo sozinho; se nao achar, abre uma janela para voce
+   escolher a pasta que contem PokemonBattleAdvanced.exe.)
+3. Abra o jogo normalmente.
+
+Na primeira vez pode haver alguns engasgos enquanto o jogo cria o cache de
+shaders do Vulkan. Depois disso fica fluido.
+
+COMO DESINSTALAR
+De dois cliques em DESINSTALAR.bat. O jogo volta a usar o Direct3D 12.
+
+NOTAS
+- NAO altera o .exe nem o .pck do jogo, nem o seu save. So adiciona uma linha
+  no arquivo override.cfg da pasta do jogo.
+- Funciona junto com o Mod Menu: os dois instaladores mesclam o override.cfg
+  em vez de sobrescrever, entao um nao apaga o outro.
+- Feito para a versao 0.3.3-preview (Godot 4.7). Precisa de uma placa de video
+  com suporte a Vulkan (praticamente qualquer uma dos ultimos anos).
+- Se o jogo nao abrir depois de instalar, rode DESINSTALAR.bat.
